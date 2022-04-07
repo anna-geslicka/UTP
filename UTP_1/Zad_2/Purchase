@@ -1,0 +1,40 @@
+/**
+ *
+ *  @author Gęślicka Anna S21151
+ *
+ */
+
+package zad2;
+
+public class Purchase {
+    private String customerData, id, name, surname, purchase;
+    private double quantity,price;
+
+    public Purchase(String customerData) { this.customerData = customerData; }
+
+    public String getCustomerData() { return customerData; }
+    public String getId() {
+        return id;
+    }
+    public String getSurname() {
+        return surname;
+    }
+    public double getQuantity() {
+        return quantity;
+    }
+    public double getPrice() { return price; }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+    public void setPurchase(String purchase) { this.purchase = purchase; }
+    public void setQuantity(double quantity) { this.quantity = quantity; }
+    public void setPrice(double price) { this.price = price; }
+
+}
