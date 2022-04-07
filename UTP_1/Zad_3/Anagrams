@@ -1,0 +1,69 @@
+/**
+ *
+ *  @author Gęślicka Anna S21151
+ *
+ */
+
+package zad3;
+
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import static java.util.stream.Collectors.toMap;
+
+public class Anagrams {
+    private final HashMap<String, ArrayList<String>> mapOfAnagrams = new HashMap<>();
+
+    public Anagrams(String source) {
+        ArrayList<String> lines = new ArrayList<>();
+        try (Stream<String> stream = Files.lines(Paths.get(source))) {
+            stream.forEach(l -> lines.addAll(Arrays.asList(l.split("\\s+"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for (String word : lines) {
+            char[] tempSort = word.toCharArray();
+            Arrays.sort(tempSort);
+            String sortedWord = new String(tempSort);
+            if (this.mapOfAnagrams.containsKey(sortedWord)) {
+                this.mapOfAnagrams.get(sortedWord).add(word);
+            } else {
+                ArrayList<String> list = new ArrayList<>();
+                list.add(word);
+                this.mapOfAnagrams.put(sortedWord, list);
+            }
+        }
+    }
+
+    public Iterable<ArrayList<String>> getSortedByAnQty() {
+        return this.mapOfAnagrams.entrySet().stream()
+                .sorted((word1, word2) -> {
+                    int words1 = word1.getValue().size();
+                    int words2 = word2.getValue().size();
+                    return Integer.compare(words1, words2);
+                })
+                .collect(toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (k,v) -> {throw new AssertionError();},
+                       LinkedHashMap::new
+                )).values();
+    }
+
+    String getAnagramsFor(String word) {
+        char[] tempSort = word.toCharArray();
+        Arrays.sort(tempSort);
+        String sortedWord = new String(tempSort);
+
+        if (this.mapOfAnagrams.containsKey(sortedWord)) {
+            String anagramList = this.mapOfAnagrams.get(sortedWord).
+                    stream().filter(w -> !w.equals(word)).collect(Collectors.joining(", "));
+            return word + ": [" + anagramList + "]";
+        }
+        return word + ": []";
+    }
+}
