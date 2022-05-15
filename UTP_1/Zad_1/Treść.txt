@@ -1,3 +1,5 @@
+10/10
+
 Zadanie: dodatkowe operacje na listach
 Stworzyć klasę XList, dostarczającą dodatkowych możliwości tworzenia list i operowania na nich.
 W klasie powinny znaleźć się odpowiednie konstruktory oraz statyczne metody of, umożliwiające tworzenie obiektów XList z innych kolekcji, tablic oraz argumentów podawanych przez przecinki.
