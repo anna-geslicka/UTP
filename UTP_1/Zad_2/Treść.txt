@@ -1,3 +1,5 @@
+10/10
+
 W pliku customers.txt umieszczonym w katalogu {user.home} znajdują się dane o zakupach klientów w postaci:
 
 id_klienta; nazwisko i imię; nazwa_towaru;cena;zakupiona_ilość
