@@ -19,7 +19,7 @@ public class Letters {
                         System.out.print(threadLetter);
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
+                       break;
                 }}});
             temp.setName("Thread " + threadLetter);
             threads.add(temp);
